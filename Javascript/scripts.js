@@ -73,10 +73,7 @@ $(document).ready(function () {
     const totalRows = $(".data-table tbody tr").length;
     const totalPages = Math.ceil(totalRows / rowsPerPage);
 
-    // Update pagination info
     updatePagination(1, rowsPerPage, totalRows);
-
-    // Show only first page rows
     $(".data-table tbody tr").hide().slice(0, rowsPerPage).show();
   });
 
@@ -340,7 +337,6 @@ $(document).ready(function () {
     const operator = $("#competencyModal .operator-select").val();
     const value = $("#competencyModal .value-input").val().toLowerCase();
 
-    // Perform the query (similar to existing query logic)
     filterTableData(column, operator, value);
     $("#competencyModal").hide();
   });
@@ -398,10 +394,8 @@ $(document).ready(function () {
 
     if (Math.abs(diff) > swipeThreshold) {
       if (diff > 0) {
-        // Swipe right - show sidebar
         $(".sidebar").addClass("active");
       } else {
-        // Swipe left - hide sidebar
         $(".sidebar").removeClass("active");
       }
     }
