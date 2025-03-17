@@ -437,4 +437,152 @@ $(document).ready(function () {
       $(".nav-search-input-container").removeClass("active");
     }
   });
+
+  // Update these variable names and add better comments
+  function formatDateTime(dateTimeStr) {
+    const dateObj = new Date(dateTimeStr);
+
+    const longDateFormat = new Intl.DateTimeFormat("en-US", {
+      month: "numeric",
+      day: "numeric",
+      year: "numeric",
+      hour: "numeric",
+      minute: "2-digit",
+      hour12: true,
+    }).format(dateObj);
+
+    const shortDateFormat = new Intl.DateTimeFormat("en-US", {
+      month: "numeric",
+      day: "numeric",
+      year: "2-digit",
+    }).format(dateObj);
+
+    return {
+      longFormat: longDateFormat,
+      shortFormat: shortDateFormat,
+    };
+  }
+
+  // Initialize date formatting for table cells
+  $(".sent-cell").each(function () {
+    const originalDateTime = $(this).text().trim();
+    const formattedDateTime = formatDateTime(originalDateTime);
+
+    $(this).html(`
+      <span class="full-time" title="${formattedDateTime.longFormat}">${formattedDateTime.longFormat}</span>
+      <span class="short-time" title="${formattedDateTime.longFormat}">${formattedDateTime.shortFormat}</span>
+    `);
+  });
+
+  // Table search with debounce
+  let searchDebounceTimer;
+  $(".table-search").on("input", function () {
+    const $searchInput = $(this);
+    const $tableRows = $(".data-table tbody tr");
+
+    clearTimeout(searchDebounceTimer);
+    searchDebounceTimer = setTimeout(() => {
+      const searchQuery = $searchInput.val().toLowerCase();
+
+      $tableRows.each(function () {
+        const $row = $(this);
+        const rowContent = $row.text().toLowerCase();
+        const isMatch = rowContent.includes(searchQuery);
+        $row.toggle(isMatch);
+      });
+    }, 300);
+  });
+
+  // Pagination helpers with better naming
+  function getCurrentPageNumber() {
+    const paginationText = $(".pagination-range").text();
+    return parseInt(paginationText.split("-")[0]);
+  }
+
+  function updatePaginationDisplay(currentPage, itemsPerPage, totalItems) {
+    const startIndex = (currentPage - 1) * itemsPerPage + 1;
+    const endIndex = Math.min(startIndex + itemsPerPage - 1, totalItems);
+    $(".pagination-range").text(`${startIndex}-${endIndex} of ${totalItems}`);
+  }
+
+  function displayPageItems(pageNumber, itemsPerPage) {
+    const startIndex = (pageNumber - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+
+    $(".data-table tbody tr").hide().slice(startIndex, endIndex).show();
+  }
+
+  // Export table data with improved naming
+  function exportTableData(exportFormat) {
+    const tableHeaders = [];
+    const tableRows = [];
+
+    $(".data-table th").each(function () {
+      tableHeaders.push($(this).text());
+    });
+
+    $(".data-table tbody tr:visible").each(function () {
+      const rowData = [];
+      $(this)
+        .find("td")
+        .each(function () {
+          rowData.push($(this).text().trim());
+        });
+      tableRows.push(rowData);
+    });
+
+    let exportContent = "";
+    const fileName = `table_export.${exportFormat}`;
+
+    switch (exportFormat) {
+      case "excel":
+        exportContent = generateExcelContent(tableHeaders, tableRows);
+        break;
+      case "word":
+        exportContent = generateWordContent(tableHeaders, tableRows);
+        break;
+      case "text":
+        exportContent = generateTextContent(tableHeaders, tableRows);
+        break;
+    }
+
+    downloadGeneratedFile(fileName, exportContent);
+  }
+
+  // Helper functions for export
+  function generateExcelContent(headers, rows) {
+    return (
+      headers.join("\t") + "\n" + rows.map((row) => row.join("\t")).join("\n")
+    );
+  }
+
+  function generateWordContent(headers, rows) {
+    return `<table border="1">
+      <tr>${headers.map((h) => `<th>${h}</th>`).join("")}</tr>
+      ${rows
+        .map(
+          (row) => `<tr>${row.map((cell) => `<td>${cell}</td>`).join("")}</tr>`
+        )
+        .join("")}
+    </table>`;
+  }
+
+  function generateTextContent(headers, rows) {
+    return (
+      headers.join(",") + "\n" + rows.map((row) => row.join(",")).join("\n")
+    );
+  }
+
+  function downloadGeneratedFile(fileName, content) {
+    const blob = new Blob([content], { type: "text/plain" });
+    const downloadUrl = window.URL.createObjectURL(blob);
+    const downloadLink = document.createElement("a");
+
+    downloadLink.href = downloadUrl;
+    downloadLink.download = fileName;
+    document.body.appendChild(downloadLink);
+    downloadLink.click();
+    document.body.removeChild(downloadLink);
+    window.URL.revokeObjectURL(downloadUrl);
+  }
 });

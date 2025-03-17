@@ -1190,7 +1190,6 @@ body {
   background: #999;
 }
 
-/* Responsive styles */
 @media (max-width: 768px) {
   .nav-search-input-container.active {
     width: 250px;
