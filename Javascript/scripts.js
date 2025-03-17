@@ -45,7 +45,7 @@ $(document).ready(function () {
 
   // Competency Manager
   $('.sidebar-item[data-item="competency"]').click(function () {
-    $("#competencyModal").show();
+    $("#queryModal").show();
   });
 
   // Table row hover effect
@@ -325,20 +325,20 @@ $(document).ready(function () {
 
   // Query Modal for Competency Manager
   $(".open-competency-manager").click(function () {
-    $("#competencyModal").show();
+    $("#queryModal").show();
     // Pre-populate the form if needed
-    $("#competencyModal .column-select").val("category");
-    $("#competencyModal .operator-select").val("contains");
+    $("#queryModal .column-select").val("category");
+    $("#queryModal .operator-select").val("contains");
   });
 
   // Run Query button in Competency Manager
-  $("#competencyModal .btn-run-query").click(function () {
-    const column = $("#competencyModal .column-select").val();
-    const operator = $("#competencyModal .operator-select").val();
-    const value = $("#competencyModal .value-input").val().toLowerCase();
+  $("#queryModal .btn-run-query").click(function () {
+    const column = $("#queryModal .column-select").val();
+    const operator = $("#queryModal .operator-select").val();
+    const value = $("#queryModal .value-input").val().toLowerCase();
 
     filterTableData(column, operator, value);
-    $("#competencyModal").hide();
+    $("#queryModal").hide();
   });
 
   // Helper function for filtering table data
@@ -400,4 +400,41 @@ $(document).ready(function () {
       }
     }
   }
+
+  // Top navigation search toggle
+  $(".nav-search .search-icon-button").click(function (e) {
+    e.stopPropagation();
+    const $container = $(".nav-search-input-container");
+    $container.toggleClass("active");
+
+    if ($container.hasClass("active")) {
+      $container.find(".nav-search-input").focus();
+    }
+  });
+
+  // Close search input when clicking outside
+  $(document).click(function (e) {
+    if (!$(e.target).closest(".nav-search").length) {
+      $(".nav-search-input-container").removeClass("active");
+    }
+  });
+
+  // Handle search input
+  $(".nav-search-input").on("input", function () {
+    const searchText = $(this).val().toLowerCase();
+    // Add your search logic here
+    console.log("Searching for:", searchText);
+  });
+
+  // Prevent search input close when clicking inside it
+  $(".nav-search-input").click(function (e) {
+    e.stopPropagation();
+  });
+
+  // Handle ESC key to close search
+  $(document).keyup(function (e) {
+    if (e.key === "Escape") {
+      $(".nav-search-input-container").removeClass("active");
+    }
+  });
 });

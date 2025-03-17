@@ -105,9 +105,17 @@
             </li>
           </ul>
           <div class="nav-search nav-icons">
-            <a href="#">
+            <div class="nav-search-input-container">
+              <input
+                type="text"
+                placeholder="Search Document Management"
+                class="nav-search-input"
+              />
               <img src="Images/search.png" alt="search" class="search-icon" />
-            </a>
+            </div>
+            <button class="search-icon-button">
+              <img src="Images/search.png" alt="search" class="search-icon" />
+            </button>
             <a href="#">
               <img src="Images/help.png" alt="help" class="help-icon" />
             </a>
@@ -159,7 +167,7 @@
               <img src="Images/nce-icon.png" alt="NCE" class="sidebar-icon" />
               <span class="sidebar-text">NCE</span>
             </div>
-            <div class="sidebar-item" data-item="competency">
+            <div class="sidebar-item">
               <img
                 src="Images/competency-icon.png"
                 alt="Competency"
@@ -376,7 +384,7 @@
             </div>
 
             <!-- Query Modal -->
-            <div class="modal query-modal" id="competencyModal">
+            <div class="modal query-modal" id="queryModal">
               <div class="modal-content">
                 <div class="modal-header">
                   <h2>Run a Query</h2>

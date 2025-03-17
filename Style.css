@@ -266,16 +266,82 @@ body {
 }
 
 .nav-search {
+  position: relative;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 16px;
   margin-left: 20px;
-  margin-top: 10px;
 }
 
-.search-icon {
-  width: 22px;
-  height: 22px;
+.nav-search-input-container {
+  position: relative;
+  width: 0;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.nav-search-input-container.active {
+  width: 300px;
+}
+
+.nav-search-input {
+  width: 100%;
+  padding: 8px 16px 8px 40px;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  font-size: 0.95rem;
+  background-color: var(--background-color);
+  transition: all 0.2s ease;
+}
+
+.nav-search-input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+  background-color: white;
+}
+
+.nav-search-input:hover {
+  border-color: #b3b3b3;
+  background-color: white;
+}
+
+.nav-search .search-icon-button {
+  background: none;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: background-color 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-search .search-icon-button:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.nav-search .search-icon {
+  width: 20px;
+  height: 20px;
+  opacity: 0.6;
+  transition: opacity 0.2s ease;
+}
+
+.nav-search .search-icon-button:hover .search-icon {
+  opacity: 0.8;
+}
+
+.nav-search-input-container .search-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  opacity: 0.5;
+  pointer-events: none;
 }
 
 .help-icon {
@@ -290,19 +356,6 @@ body {
 
 .notification-icon-container {
   position: relative;
-}
-
-.search-input {
-  padding: 6px 12px;
-  border: 1px solid var(--border-color);
-  border-radius: 4px;
-  width: 250px;
-}
-
-.nav-icons {
-  display: flex;
-  align-items: center;
-  gap: 16px;
 }
 
 .notification-count {
@@ -1135,4 +1188,32 @@ body {
 .dashboard::-webkit-scrollbar-thumb:hover,
 .data-table::-webkit-scrollbar-thumb:hover {
   background: #999;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .nav-search-input-container.active {
+    width: 250px;
+  }
+
+  .nav-search-input {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-search-input-container.active {
+    position: absolute;
+    left: 16px;
+    right: 16px;
+    width: calc(100% - 32px);
+    top: 100%;
+    margin-top: 8px;
+  }
+
+  .nav-search-input {
+    padding: 10px 16px 10px 40px;
+    background-color: white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
 }
