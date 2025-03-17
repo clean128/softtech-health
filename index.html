@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SOFTTECH HEALTH - Quality Dashboard</title>
+    <link rel="stylesheet" href="Style.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <!-- Top Bar -->
+      <div class="top-bar">
+        <div class="logo-section">
+          <img src="Images/logo.png" alt="SOFTTECH HEALTH" class="logo" />
+          <span class="logo-text">SOFTTECH HEALTH</span>
+        </div>
+
+        <nav class="main-nav">
+          <ul class="nav-menu">
+            <li class="nav-item"><a href="#" class="active">Home</a></li>
+            <li class="nav-item"><a href="#">NCE</a></li>
+            <li class="nav-item dropdown">
+              <a href="#" class="dropdown-toggle"
+                >Tasks <span class="dropdown-icon">▼</span></a
+              >
+            </li>
+            <li class="nav-item dropdown">
+              <a href="#" class="dropdown-toggle"
+                >DA <span class="dropdown-icon">▼</span></a
+              >
+            </li>
+            <li class="nav-item dropdown">
+              <a href="#" class="dropdown-toggle"
+                >Favorites <span class="dropdown-icon">▼</span></a
+              >
+            </li>
+            <li class="nav-item dropdown">
+              <a href="#" class="dropdown-toggle"
+                >About <span class="dropdown-icon">▼</span></a
+              >
+            </li>
+            <li class="nav-item supervisor-dropdown">
+              <a href="#" class="dropdown-toggle">
+                Supervisor <span class="dropdown-icon">▼</span>
+              </a>
+              <div class="supervisor-menu">
+                <div class="supervisor-item">Locked Out Employees (3)</div>
+                <div class="supervisor-item">Archived Employees</div>
+                <div class="supervisor-item">View Employees</div>
+                <div class="supervisor-item">
+                  Employee Reports
+                  <span class="submenu-indicator">▶</span>
+                  <div class="supervisor-submenu">
+                    <div class="supervisor-item">User Login Report</div>
+                    <div class="supervisor-item">
+                      User Currently Logged In Report
+                    </div>
+                    <div class="supervisor-item">Employee Activity Report</div>
+                    <div class="supervisor-item">
+                      Employee Activity By Group Report
+                    </div>
+                    <div class="supervisor-item">Files Viewed Report</div>
+                    <div class="supervisor-item">
+                      Read and Sign Latest Signoff
+                    </div>
+                    <div class="supervisor-item">
+                      Global Incomplete Read and Signs
+                    </div>
+                    <div class="supervisor-item">
+                      Assigned RnS List by Employee
+                    </div>
+                    <div class="supervisor-item">
+                      Complete RnS List by Employee
+                    </div>
+                  </div>
+                </div>
+                <div class="supervisor-item">Files Awaiting Approval</div>
+                <div class="supervisor-item">Folders Due for Review</div>
+                <div class="supervisor-item">Checked Out Files</div>
+                <div class="supervisor-item">Checked Out Collaborations</div>
+                <div class="supervisor-item">File Templates</div>
+                <div class="supervisor-item">File Collaborations</div>
+                <div class="supervisor-item">Assign RnS by User</div>
+                <div class="supervisor-item">Assign RnS by User Group</div>
+                <div class="supervisor-item">Create new Read and Sign List</div>
+                <div class="supervisor-item">View Read and Sign Lists</div>
+                <div class="supervisor-item">System Properties</div>
+              </div>
+            </li>
+          </ul>
+          <div class="nav-search">
+            <input
+              type="text"
+              placeholder="Search Document Management"
+              class="search-input"
+            />
+            <button class="search-button">🔍</button>
+          </div>
+          <div class="nav-icons">
+            <div class="nav-icon help-icon">?</div>
+            <div class="nav-icon notification-icon">
+              <span class="notification-count">99</span>
+              🔔
+            </div>
+          </div>
+        </nav>
+      </div>
+
+      <div class="main-content">
+        <!-- Sidebar with Toggle -->
+        <div class="sidebar">
+          <button class="sidebar-toggle">
+            <i class="fas fa-angle-left"></i>
+          </button>
+          <nav class="sidebar-nav">
+            <div class="sidebar-item" data-item="document">
+              <img
+                src="Images/document-icon.png"
+                alt="Document"
+                class="sidebar-icon"
+              />
+              <span class="sidebar-text">Document Management</span>
+            </div>
+            <div class="sidebar-item" data-item="accreditation">
+              <img
+                src="Images/accreditation-icon.png"
+                alt="Accreditation"
+                class="sidebar-icon"
+              />
+              <span class="sidebar-text">Accreditation Manager</span>
+            </div>
+            <div class="sidebar-item" data-item="forms">
+              <img
+                src="Images/forms-icon.png"
+                alt="Forms"
+                class="sidebar-icon"
+              />
+              <span class="sidebar-text">Forms Manager</span>
+            </div>
+            <div class="sidebar-item" data-item="nce">
+              <img src="Images/nce-icon.png" alt="NCE" class="sidebar-icon" />
+              <span class="sidebar-text">NCE</span>
+            </div>
+            <div class="sidebar-item" data-item="competency">
+              <img
+                src="Images/competency-icon.png"
+                alt="Competency"
+                class="sidebar-icon"
+              />
+              <span class="sidebar-text">Competency</span>
+            </div>
+            <div class="sidebar-item" data-item="asset">
+              <img
+                src="Images/asset-icon.png"
+                alt="Asset"
+                class="sidebar-icon"
+              />
+              <span class="sidebar-text">Asset Manager</span>
+            </div>
+            <div class="sidebar-item" data-item="admin">
+              <img
+                src="Images/admin-icon.png"
+                alt="Administration"
+                class="sidebar-icon"
+              />
+              <span class="sidebar-text">Administration</span>
+            </div>
+          </nav>
+        </div>
+
+        <div class="main-panel">
+          <div class="dashboard">
+            <h1 class="dashboard-title">Quality Dashboard</h1>
+
+            <div class="category-tiles">
+              <div class="category-tile">
+                <div class="tile-header">Administration</div>
+                <div class="tile-count">6</div>
+              </div>
+              <div class="category-tile">
+                <div class="tile-header">Read and Sign</div>
+                <div class="tile-count">9</div>
+              </div>
+              <div class="category-tile">
+                <div class="tile-header">NCE</div>
+                <div class="tile-count">2</div>
+              </div>
+              <div class="category-tile">
+                <div class="tile-header">Competency</div>
+                <div class="tile-count">4</div>
+              </div>
+              <div class="category-tile">
+                <div class="tile-header">Folder Review</div>
+                <div class="tile-count">3</div>
+              </div>
+              <div class="category-tile">
+                <div class="tile-header">File Approval</div>
+                <div class="tile-count">5</div>
+              </div>
+            </div>
+
+            <div class="data-table-container">
+              <div class="table-controls">
+                <div class="search-control">
+                  <input
+                    type="text"
+                    placeholder="Search"
+                    class="table-search"
+                  />
+                  <button class="table-search-button">🔍</button>
+                </div>
+                <div class="table-actions">
+                  <button class="table-action-button">⋮</button>
+                  <div class="action-dropdown" id="tableActionDropdown">
+                    <div class="action-item">Export table to Excel</div>
+                    <div class="action-item">Export table to Word</div>
+                    <div class="action-item">Export table to Text</div>
+                    <div class="action-item">Run a Query</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="data-table">
+                <table>
+                  <thead>
+                    <tr>
+                      <th class="open-column">Open</th>
+                      <th class="category-column">Category</th>
+                      <th class="subject-column">Subject</th>
+                      <th class="viewed-column">Viewed</th>
+                      <th class="sent-column">Sent</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="open-cell">
+                        <div class="options-icon">⋯</div>
+                        <div class="table-actions-dropdown">
+                          <div class="table-action-item">
+                            Export table to Excel
+                          </div>
+                          <div class="table-action-item">
+                            Export table to Word
+                          </div>
+                          <div class="table-action-item">
+                            Export table to Text
+                          </div>
+                          <div class="table-action-item">Run a Query</div>
+                        </div>
+                      </td>
+                      <td class="category-cell">
+                        Document Approval (GPP01.08 Laboratory Normal Hours Day
+                        Shift)
+                      </td>
+                      <td class="subject-cell">Approval Required</td>
+                      <td class="viewed-cell">
+                        <div class="viewed-icon">✓</div>
+                      </td>
+                      <td class="sent-cell">3/14/2025 10:23:19 AM</td>
+                    </tr>
+                    <tr>
+                      <td class="open-cell">
+                        <div class="options-icon">⋯</div>
+                        <div class="table-actions-dropdown">
+                          <div class="table-action-item">
+                            Export table to Excel
+                          </div>
+                          <div class="table-action-item">
+                            Export table to Word
+                          </div>
+                          <div class="table-action-item">
+                            Export table to Text
+                          </div>
+                          <div class="table-action-item">Run a Query</div>
+                        </div>
+                      </td>
+                      <td class="category-cell">Backup Complete</td>
+                      <td class="subject-cell">Backup Complete</td>
+                      <td class="viewed-cell"></td>
+                      <td class="sent-cell">3/14/2025 1:19:09 AM</td>
+                    </tr>
+                    <tr>
+                      <td class="open-cell">
+                        <div class="options-icon">⋯</div>
+                        <div class="table-actions-dropdown">
+                          <div class="table-action-item">
+                            Export table to Excel
+                          </div>
+                          <div class="table-action-item">
+                            Export table to Word
+                          </div>
+                          <div class="table-action-item">
+                            Export table to Text
+                          </div>
+                          <div class="table-action-item">Run a Query</div>
+                        </div>
+                      </td>
+                      <td class="category-cell">
+                        Competency Due Today Anderson, Dave
+                      </td>
+                      <td class="subject-cell">
+                        Restraint and Seclusion Competency
+                      </td>
+                      <td class="viewed-cell"></td>
+                      <td class="sent-cell">3/6/2025 12:01:34 AM</td>
+                    </tr>
+                    <tr>
+                      <td class="open-cell">
+                        <div class="options-icon">⋯</div>
+                        <div class="table-actions-dropdown">
+                          <div class="table-action-item">
+                            Export table to Excel
+                          </div>
+                          <div class="table-action-item">
+                            Export table to Word
+                          </div>
+                          <div class="table-action-item">
+                            Export table to Text
+                          </div>
+                          <div class="table-action-item">Run a Query</div>
+                        </div>
+                      </td>
+                      <td class="category-cell">
+                        Competency Due Today Bluethorn, Paul
+                      </td>
+                      <td class="subject-cell">
+                        Restraint and Seclusion Competency
+                      </td>
+                      <td class="viewed-cell"></td>
+                      <td class="sent-cell">3/6/2025 12:01:34 AM</td>
+                    </tr>
+                    <tr>
+                      <td class="open-cell">
+                        <div class="options-icon">⋯</div>
+                        <div class="table-actions-dropdown">
+                          <div class="table-action-item">
+                            Export table to Excel
+                          </div>
+                          <div class="table-action-item">
+                            Export table to Word
+                          </div>
+                          <div class="table-action-item">
+                            Export table to Text
+                          </div>
+                          <div class="table-action-item">Run a Query</div>
+                        </div>
+                      </td>
+                      <td class="category-cell">
+                        Competency Due Today Alpine, Cathy
+                      </td>
+                      <td class="subject-cell">
+                        Restraint and Seclusion Competency
+                      </td>
+                      <td class="viewed-cell"></td>
+                      <td class="sent-cell">3/6/2025 12:01:34 AM</td>
+                    </tr>
+                    <tr>
+                      <td class="open-cell">
+                        <div class="options-icon">⋯</div>
+                        <div class="table-actions-dropdown">
+                          <div class="table-action-item">
+                            Export table to Excel
+                          </div>
+                          <div class="table-action-item">
+                            Export table to Word
+                          </div>
+                          <div class="table-action-item">
+                            Export table to Text
+                          </div>
+                          <div class="table-action-item">Run a Query</div>
+                        </div>
+                      </td>
+                      <td class="category-cell">
+                        Read and Sign (GPP01.01 Alcohol)
+                      </td>
+                      <td class="subject-cell">
+                        Please complete this Read and Sign
+                      </td>
+                      <td class="viewed-cell"></td>
+                      <td class="sent-cell">2/20/2025 9:05:50 AM</td>
+                    </tr>
+                    <tr>
+                      <td class="open-cell">
+                        <div class="options-icon">⋯</div>
+                        <div class="table-actions-dropdown">
+                          <div class="table-action-item">
+                            Export table to Excel
+                          </div>
+                          <div class="table-action-item">
+                            Export table to Word
+                          </div>
+                          <div class="table-action-item">
+                            Export table to Text
+                          </div>
+                          <div class="table-action-item">Run a Query</div>
+                        </div>
+                      </td>
+                      <td class="category-cell">
+                        Read and Sign List Review (A Onboarding)
+                      </td>
+                      <td class="subject-cell">
+                        Read and Sign List Notification (A Onboarding)
+                      </td>
+                      <td class="viewed-cell"></td>
+                      <td class="sent-cell">2/13/2025 10:40:05 AM</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="table-footer">
+                <div class="pagination-info">
+                  <span>Rows per page:</span>
+                  <select class="rows-select">
+                    <option value="100">100</option>
+                    <option value="50">50</option>
+                    <option value="25">25</option>
+                  </select>
+                  <span class="pagination-range">1-7 of 7</span>
+                  <button class="pagination-button prev-button">◄</button>
+                  <button class="pagination-button next-button">►</button>
+                </div>
+                <div class="table-menu">
+                  <button class="table-menu-button">⋮</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Query Modal -->
+            <div class="modal query-modal" id="competencyModal">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h2>Run a Query</h2>
+                  <span class="modal-close">&times;</span>
+                </div>
+                <div class="modal-body">
+                  <p>Return all records where:</p>
+                  <div class="form-group">
+                    <label>This column:</label>
+                    <select class="form-control column-select">
+                      <option value="category">Category</option>
+                      <option value="subject">Subject</option>
+                      <option value="viewed">Viewed</option>
+                      <option value="sent">Sent</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <select class="form-control operator-select">
+                      <option value="contains">contains</option>
+                      <option value="equals">equals</option>
+                      <option value="starts-with">starts with</option>
+                      <option value="ends-with">ends with</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label>This value:</label>
+                    <input type="text" class="form-control value-input" />
+                  </div>
+                  <div class="form-actions">
+                    <button class="btn btn-run-query">Run Query</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="JavaScript/scripts.js"></script>
+  </body>
+</html>
