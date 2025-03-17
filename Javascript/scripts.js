@@ -252,159 +252,47 @@ $(document).ready(function () {
     }
   });
 
-  // Enhanced table responsiveness
-  function adjustTableLayout() {
-    const $container = $(".data-table-container");
-    const containerWidth = $container.width();
-    const $table = $(".data-table table");
-    const $headerCells = $table.find("th");
-    const $bodyCells = $table.find("td");
-
-    // Reset any inline styles
-    $headerCells.css("width", "");
-    $bodyCells.css("width", "");
-
-    if (containerWidth < 768) {
-      // Mobile view - allow horizontal scroll
-      $table.css("min-width", "800px");
-    } else {
-      // Desktop view - adjust column widths
-      $table.css("min-width", "");
-
-      // Calculate and set optimal column widths
-      $headerCells.each(function (index) {
-        const maxWidth = Math.max(
-          $(this).width(),
-          $bodyCells
-            .filter(`:nth-child(${index + 1})`)
-            .map(function () {
-              return $(this).width();
-            })
-            .get()
-            .reduce((a, b) => Math.max(a, b), 0)
-        );
-
-        const columnClass = $(this).attr("class");
-        if (columnClass && columnClass.includes("open-column")) {
-          $(this).width(60);
-          $bodyCells.filter(`:nth-child(${index + 1})`).width(60);
-        } else if (columnClass && columnClass.includes("viewed-column")) {
-          $(this).width(80);
-          $bodyCells.filter(`:nth-child(${index + 1})`).width(80);
-        } else if (columnClass && columnClass.includes("sent-column")) {
-          $(this).width(180);
-          $bodyCells.filter(`:nth-child(${index + 1})`).width(180);
-        } else {
-          $(this).width(maxWidth);
-          $bodyCells.filter(`:nth-child(${index + 1})`).width(maxWidth);
-        }
-      });
-    }
-  }
-
-  // Call on initial load
-  adjustTableLayout();
-
-  // Smooth scrolling for the dashboard
-  $(".dashboard").on(
-    "scroll",
-    _.throttle(function () {
-      const scrollTop = $(this).scrollTop();
-
-      // Add shadow to table header when scrolling
-      if (scrollTop > 0) {
-        $(".data-table thead").addClass("table-header-shadow");
-      } else {
-        $(".data-table thead").removeClass("table-header-shadow");
-      }
-    }, 100)
-  );
-
-  // Enhanced table row hover effect
-  $(".data-table tbody tr").hover(
-    function () {
-      $(this).addClass("row-hover");
-      // Add subtle transition
-      $(this).css("transition", "background-color 0.2s ease");
-    },
-    function () {
-      $(this).removeClass("row-hover");
-      // Remove transition after hover
-      setTimeout(() => {
-        $(this).css("transition", "");
-      }, 200);
-    }
-  );
-
-  // Improve table search responsiveness
-  $(".table-search").on(
-    "input",
-    _.debounce(function () {
-      const searchText = $(this).val().toLowerCase();
-      const $rows = $(".data-table tbody tr");
-
-      $rows.each(function () {
-        const $row = $(this);
-        const rowText = $row.text().toLowerCase();
-
-        if (rowText.includes(searchText)) {
-          $row.slideDown(150);
-        } else {
-          $row.slideUp(150);
-        }
-      });
-
-      // Update pagination after search
-      updatePagination(
-        1,
-        parseInt($(".rows-select").val()),
-        $rows.filter(":visible").length
-      );
-    }, 300)
-  );
-
-  // Consolidated window resize handler
+  // Handle window resize
   let resizeTimer;
   $(window).on("resize", function () {
     clearTimeout(resizeTimer);
     resizeTimer = setTimeout(function () {
       const isMobile = $(window).width() <= 768;
       const $sidebar = $(".sidebar");
-      const $mainPanel = $(".main-panel");
-
-      // Handle sidebar state
-      if (isMobile) {
-        $sidebar.removeClass("collapsed");
-        $mainPanel.css("margin-left", "0");
-      } else {
-        if ($sidebar.hasClass("collapsed")) {
-          $mainPanel.css("margin-left", "60px");
-        } else {
-          $mainPanel.css("margin-left", "");
-        }
-      }
-
-      // Update sidebar toggle icon
       const $icon = $(".sidebar-toggle i");
-      if ($sidebar.hasClass("collapsed") || $sidebar.hasClass("active")) {
-        $icon.removeClass("fa-angle-left").addClass("fa-angle-right");
+
+      if (!isMobile) {
+        $sidebar.removeClass("active");
+        if ($sidebar.hasClass("collapsed")) {
+          $icon.removeClass("fa-angle-left").addClass("fa-angle-right");
+        } else {
+          $icon.removeClass("fa-angle-right").addClass("fa-angle-left");
+        }
       } else {
-        $icon.removeClass("fa-angle-right").addClass("fa-angle-left");
+        $sidebar.removeClass("collapsed");
       }
 
-      // Adjust table layout
-      adjustTableLayout();
-
-      // Reposition dropdowns
+      // Reposition any open dropdowns
       $(".table-actions-dropdown:visible").each(function () {
         const $dropdown = $(this);
-        const $trigger = $dropdown.prev(".options-icon");
-        const triggerOffset = $trigger.offset();
+        const $button = $dropdown
+          .closest(".table-actions")
+          .find(".table-action-button");
+        const buttonOffset = $button.offset();
+        const dropdownWidth = $dropdown.outerWidth();
+        const windowWidth = $(window).width();
 
-        $dropdown.css({
-          top: triggerOffset.top + $trigger.outerHeight(),
-          left: triggerOffset.left,
-        });
+        if (buttonOffset.left + dropdownWidth > windowWidth) {
+          $dropdown.css({
+            right: "0",
+            left: "auto",
+          });
+        } else {
+          $dropdown.css({
+            left: "0",
+            right: "auto",
+          });
+        }
       });
     }, 250);
   });

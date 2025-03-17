@@ -25,28 +25,33 @@
             <li class="nav-item"><a href="#" class="active">Home</a></li>
             <li class="nav-item"><a href="#">NCE</a></li>
             <li class="nav-item dropdown">
-              <a href="#" class="dropdown-toggle"
-                >Tasks <span class="dropdown-icon">▼</span></a
-              >
+              <a href="#" class="dropdown-toggle">
+                <span>Tasks</span>
+                <img src="Images/down.png" alt="down" class="dropdown-icon" />
+              </a>
             </li>
             <li class="nav-item dropdown">
-              <a href="#" class="dropdown-toggle"
-                >DA <span class="dropdown-icon">▼</span></a
-              >
+              <a href="#" class="dropdown-toggle">
+                <span>DA</span>
+                <img src="Images/down.png" alt="down" class="dropdown-icon" />
+              </a>
             </li>
             <li class="nav-item dropdown">
-              <a href="#" class="dropdown-toggle"
-                >Favorites <span class="dropdown-icon">▼</span></a
-              >
+              <a href="#" class="dropdown-toggle">
+                <span>Favorites</span>
+                <img src="Images/down.png" alt="down" class="dropdown-icon" />
+              </a>
             </li>
             <li class="nav-item dropdown">
-              <a href="#" class="dropdown-toggle"
-                >About <span class="dropdown-icon">▼</span></a
-              >
+              <a href="#" class="dropdown-toggle">
+                <span>About</span>
+                <img src="Images/down.png" alt="down" class="dropdown-icon" />
+              </a>
             </li>
             <li class="nav-item supervisor-dropdown">
               <a href="#" class="dropdown-toggle">
-                Supervisor <span class="dropdown-icon">▼</span>
+                <span>Supervisor</span>
+                <img src="Images/down.png" alt="down" class="dropdown-icon" />
               </a>
               <div class="supervisor-menu">
                 <div class="supervisor-item">Locked Out Employees (3)</div>
@@ -54,7 +59,13 @@
                 <div class="supervisor-item">View Employees</div>
                 <div class="supervisor-item">
                   Employee Reports
-                  <span class="submenu-indicator">▶</span>
+                  <span class="submenu-indicator">
+                    <img
+                      src="Images/right.png"
+                      alt="right"
+                      class="dropdown-icon"
+                    />
+                  </span>
                   <div class="supervisor-submenu">
                     <div class="supervisor-item">User Login Report</div>
                     <div class="supervisor-item">
@@ -93,21 +104,23 @@
               </div>
             </li>
           </ul>
-          <div class="nav-search">
-            <input
-              type="text"
-              placeholder="Search Document Management"
-              class="search-input"
-            />
-            <button class="search-button">🔍</button>
+          <div class="nav-search nav-icons">
+            <a href="#">
+              <img src="Images/search.png" alt="search" class="search-icon" />
+            </a>
+            <a href="#">
+              <img src="Images/help.png" alt="help" class="help-icon" />
+            </a>
+            <a href="#" class="notification-icon-container">
+              <span class="notification-count">99+</span>
+              <img
+                src="Images/notification.png"
+                alt="notification"
+                class="notification-icon"
+              />
+            </a>
           </div>
-          <div class="nav-icons">
-            <div class="nav-icon help-icon">?</div>
-            <div class="nav-icon notification-icon">
-              <span class="notification-count">99</span>
-              🔔
-            </div>
-          </div>
+          <!-- <div class="nav-icons"></div> -->
         </nav>
       </div>
 
@@ -216,7 +229,7 @@
                 </div>
                 <div class="table-actions">
                   <button class="table-action-button">⋮</button>
-                  <div class="action-dropdown" id="tableActionDropdown">
+                  <div class="table-actions-dropdown" id="tableActionDropdown">
                     <div class="action-item">Export table to Excel</div>
                     <div class="action-item">Export table to Word</div>
                     <div class="action-item">Export table to Text</div>
@@ -238,21 +251,7 @@
                   </thead>
                   <tbody>
                     <tr>
-                      <td class="open-cell">
-                        <div class="options-icon">⋯</div>
-                        <div class="table-actions-dropdown">
-                          <div class="table-action-item">
-                            Export table to Excel
-                          </div>
-                          <div class="table-action-item">
-                            Export table to Word
-                          </div>
-                          <div class="table-action-item">
-                            Export table to Text
-                          </div>
-                          <div class="table-action-item">Run a Query</div>
-                        </div>
-                      </td>
+                      <td class="open-cell">⋯</td>
                       <td class="category-cell">
                         Document Approval (GPP01.08 Laboratory Normal Hours Day
                         Shift)
@@ -264,42 +263,14 @@
                       <td class="sent-cell">3/14/2025 10:23:19 AM</td>
                     </tr>
                     <tr>
-                      <td class="open-cell">
-                        <div class="options-icon">⋯</div>
-                        <div class="table-actions-dropdown">
-                          <div class="table-action-item">
-                            Export table to Excel
-                          </div>
-                          <div class="table-action-item">
-                            Export table to Word
-                          </div>
-                          <div class="table-action-item">
-                            Export table to Text
-                          </div>
-                          <div class="table-action-item">Run a Query</div>
-                        </div>
-                      </td>
+                      <td class="open-cell">⋯</td>
                       <td class="category-cell">Backup Complete</td>
                       <td class="subject-cell">Backup Complete</td>
                       <td class="viewed-cell"></td>
                       <td class="sent-cell">3/14/2025 1:19:09 AM</td>
                     </tr>
                     <tr>
-                      <td class="open-cell">
-                        <div class="options-icon">⋯</div>
-                        <div class="table-actions-dropdown">
-                          <div class="table-action-item">
-                            Export table to Excel
-                          </div>
-                          <div class="table-action-item">
-                            Export table to Word
-                          </div>
-                          <div class="table-action-item">
-                            Export table to Text
-                          </div>
-                          <div class="table-action-item">Run a Query</div>
-                        </div>
-                      </td>
+                      <td class="open-cell">⋯</td>
                       <td class="category-cell">
                         Competency Due Today Anderson, Dave
                       </td>
@@ -310,21 +281,7 @@
                       <td class="sent-cell">3/6/2025 12:01:34 AM</td>
                     </tr>
                     <tr>
-                      <td class="open-cell">
-                        <div class="options-icon">⋯</div>
-                        <div class="table-actions-dropdown">
-                          <div class="table-action-item">
-                            Export table to Excel
-                          </div>
-                          <div class="table-action-item">
-                            Export table to Word
-                          </div>
-                          <div class="table-action-item">
-                            Export table to Text
-                          </div>
-                          <div class="table-action-item">Run a Query</div>
-                        </div>
-                      </td>
+                      <td class="open-cell">⋯</td>
                       <td class="category-cell">
                         Competency Due Today Bluethorn, Paul
                       </td>
@@ -335,21 +292,7 @@
                       <td class="sent-cell">3/6/2025 12:01:34 AM</td>
                     </tr>
                     <tr>
-                      <td class="open-cell">
-                        <div class="options-icon">⋯</div>
-                        <div class="table-actions-dropdown">
-                          <div class="table-action-item">
-                            Export table to Excel
-                          </div>
-                          <div class="table-action-item">
-                            Export table to Word
-                          </div>
-                          <div class="table-action-item">
-                            Export table to Text
-                          </div>
-                          <div class="table-action-item">Run a Query</div>
-                        </div>
-                      </td>
+                      <td class="open-cell">⋯</td>
                       <td class="category-cell">
                         Competency Due Today Alpine, Cathy
                       </td>
@@ -360,21 +303,7 @@
                       <td class="sent-cell">3/6/2025 12:01:34 AM</td>
                     </tr>
                     <tr>
-                      <td class="open-cell">
-                        <div class="options-icon">⋯</div>
-                        <div class="table-actions-dropdown">
-                          <div class="table-action-item">
-                            Export table to Excel
-                          </div>
-                          <div class="table-action-item">
-                            Export table to Word
-                          </div>
-                          <div class="table-action-item">
-                            Export table to Text
-                          </div>
-                          <div class="table-action-item">Run a Query</div>
-                        </div>
-                      </td>
+                      <td class="open-cell">⋯</td>
                       <td class="category-cell">
                         Read and Sign (GPP01.01 Alcohol)
                       </td>
@@ -385,21 +314,7 @@
                       <td class="sent-cell">2/20/2025 9:05:50 AM</td>
                     </tr>
                     <tr>
-                      <td class="open-cell">
-                        <div class="options-icon">⋯</div>
-                        <div class="table-actions-dropdown">
-                          <div class="table-action-item">
-                            Export table to Excel
-                          </div>
-                          <div class="table-action-item">
-                            Export table to Word
-                          </div>
-                          <div class="table-action-item">
-                            Export table to Text
-                          </div>
-                          <div class="table-action-item">Run a Query</div>
-                        </div>
-                      </td>
+                      <td class="open-cell">⋯</td>
                       <td class="category-cell">
                         Read and Sign List Review (A Onboarding)
                       </td>
@@ -422,11 +337,29 @@
                     <option value="25">25</option>
                   </select>
                   <span class="pagination-range">1-7 of 7</span>
-                  <button class="pagination-button prev-button">◄</button>
-                  <button class="pagination-button next-button">►</button>
+                  <button class="pagination-button prev-button">
+                    <img
+                      src="Images/left.png"
+                      alt="left"
+                      class="pagination-icon"
+                    />
+                  </button>
+                  <button class="pagination-button next-button">
+                    <img
+                      src="Images/right.png"
+                      alt="right"
+                      class="pagination-icon"
+                    />
+                  </button>
                 </div>
                 <div class="table-menu">
                   <button class="table-menu-button">⋮</button>
+                  <div class="table-actions-dropdown" id="tableActionDropdown">
+                    <div class="action-item">Export table to Excel</div>
+                    <div class="action-item">Export table to Word</div>
+                    <div class="action-item">Export table to Text</div>
+                    <div class="action-item">Run a Query</div>
+                  </div>
                 </div>
               </div>
             </div>
