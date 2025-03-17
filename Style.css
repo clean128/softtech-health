@@ -413,23 +413,37 @@ body {
 
 .table-footer {
   display: flex;
-  justify-content: space-between;
+  justify-content: end;
   align-items: center;
   padding: 16px;
+  gap: 30px;
   background-color: #f8f9fa;
   border-top: 1px solid var(--border-color);
 }
 
-.pagination-info {
+.rows-per-page {
   display: flex;
   align-items: center;
   gap: 8px;
 }
 
+.pagination-info {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
 .rows-select {
+  margin-top: 4px;
   padding: 4px 8px;
   border: 1px solid var(--border-color);
   border-radius: 4px;
+}
+
+.pagination-buttons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .pagination-button {
@@ -446,8 +460,8 @@ body {
 
 .pagination-icon {
   margin-top: 4px;
-  width: 14px;
-  height: 14px;
+  width: 10px;
+  height: 10px;
 }
 
 /* Modal Styles */

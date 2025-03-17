@@ -225,7 +225,11 @@
                     placeholder="Search"
                     class="table-search"
                   />
-                  <button class="table-search-button">🔍</button>
+                  <img
+                    src="Images/search.png"
+                    alt="search"
+                    class="search-icon"
+                  />
                 </div>
                 <div class="table-actions">
                   <button class="table-action-button">⋮</button>
@@ -330,27 +334,31 @@
 
               <div class="table-footer">
                 <div class="pagination-info">
-                  <span>Rows per page:</span>
-                  <select class="rows-select">
-                    <option value="100">100</option>
-                    <option value="50">50</option>
-                    <option value="25">25</option>
-                  </select>
+                  <div class="rows-per-page">
+                    <span>Rows per page:</span>
+                    <select class="rows-select">
+                      <option value="100">100</option>
+                      <option value="50">50</option>
+                      <option value="25">25</option>
+                    </select>
+                  </div>
                   <span class="pagination-range">1-7 of 7</span>
-                  <button class="pagination-button prev-button">
-                    <img
-                      src="Images/left.png"
-                      alt="left"
-                      class="pagination-icon"
-                    />
-                  </button>
-                  <button class="pagination-button next-button">
-                    <img
-                      src="Images/right.png"
-                      alt="right"
-                      class="pagination-icon"
-                    />
-                  </button>
+                  <div class="pagination-buttons">
+                    <button class="pagination-button prev-button">
+                      <img
+                        src="Images/left.png"
+                        alt="left"
+                        class="pagination-icon"
+                      />
+                    </button>
+                    <button class="pagination-button next-button">
+                      <img
+                        src="Images/right.png"
+                        alt="right"
+                        class="pagination-icon"
+                      />
+                    </button>
+                  </div>
                 </div>
                 <div class="table-menu">
                   <button class="table-menu-button">⋮</button>
