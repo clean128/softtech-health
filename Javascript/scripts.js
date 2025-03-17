@@ -219,10 +219,82 @@ $(document).ready(function () {
     window.URL.revokeObjectURL(url);
   }
 
-  // Sidebar Toggle
-  $(".sidebar-toggle").click(function () {
-    $(".sidebar").toggleClass("collapsed");
-    $(this).find("i").toggleClass("fa-angle-left fa-angle-right");
+  // Updated Sidebar Toggle
+  $(".sidebar-toggle").click(function (e) {
+    e.stopPropagation();
+    const $sidebar = $(".sidebar");
+    const isMobile = $(window).width() <= 768;
+
+    if (isMobile) {
+      $sidebar.toggleClass("active");
+    } else {
+      $sidebar.toggleClass("collapsed");
+    }
+
+    // Update toggle button icon
+    const $icon = $(this).find("i");
+    if ($sidebar.hasClass("collapsed") || $sidebar.hasClass("active")) {
+      $icon.removeClass("fa-angle-left").addClass("fa-angle-right");
+    } else {
+      $icon.removeClass("fa-angle-right").addClass("fa-angle-left");
+    }
+  });
+
+  // Close sidebar when clicking outside on mobile
+  $(document).click(function (e) {
+    if ($(window).width() <= 768) {
+      if (
+        !$(e.target).closest(".sidebar").length &&
+        !$(e.target).closest(".sidebar-toggle").length
+      ) {
+        $(".sidebar").removeClass("active");
+      }
+    }
+  });
+
+  // Handle window resize
+  let resizeTimer;
+  $(window).on("resize", function () {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(function () {
+      const isMobile = $(window).width() <= 768;
+      const $sidebar = $(".sidebar");
+      const $icon = $(".sidebar-toggle i");
+
+      if (!isMobile) {
+        $sidebar.removeClass("active");
+        if ($sidebar.hasClass("collapsed")) {
+          $icon.removeClass("fa-angle-left").addClass("fa-angle-right");
+        } else {
+          $icon.removeClass("fa-angle-right").addClass("fa-angle-left");
+        }
+      } else {
+        $sidebar.removeClass("collapsed");
+      }
+
+      // Reposition any open dropdowns
+      $(".table-actions-dropdown:visible").each(function () {
+        const $dropdown = $(this);
+        const $button = $dropdown
+          .closest(".table-actions")
+          .find(".table-action-button");
+        const buttonOffset = $button.offset();
+        const dropdownWidth = $dropdown.outerWidth();
+        const windowWidth = $(window).width();
+
+        if (buttonOffset.left + dropdownWidth > windowWidth) {
+          $dropdown.css({
+            right: "0",
+            left: "auto",
+          });
+        } else {
+          $dropdown.css({
+            left: "0",
+            right: "auto",
+          });
+        }
+      });
+    }, 250);
   });
 
   // Supervisor Dropdown
@@ -334,39 +406,4 @@ $(document).ready(function () {
       }
     }
   }
-
-  // Handle window resize
-  let resizeTimer;
-  $(window).on("resize", function () {
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(function () {
-      // Reset sidebar state on larger screens
-      if ($(window).width() > 768) {
-        $(".sidebar").removeClass("active");
-      }
-
-      // Reposition any open dropdowns
-      $(".table-actions-dropdown:visible").each(function () {
-        const $dropdown = $(this);
-        const $button = $dropdown
-          .closest(".table-actions")
-          .find(".table-action-button");
-        const buttonOffset = $button.offset();
-        const dropdownWidth = $dropdown.outerWidth();
-        const windowWidth = $(window).width();
-
-        if (buttonOffset.left + dropdownWidth > windowWidth) {
-          $dropdown.css({
-            right: "0",
-            left: "auto",
-          });
-        } else {
-          $dropdown.css({
-            left: "0",
-            right: "auto",
-          });
-        }
-      });
-    }, 250);
-  });
 });
