@@ -585,4 +585,42 @@ $(document).ready(function () {
     document.body.removeChild(downloadLink);
     window.URL.revokeObjectURL(downloadUrl);
   }
+
+  // Add hamburger menu toggle functionality
+  const $navMenuToggle = $(
+    '<button class="nav-menu-toggle"><span class="hamburger-icon"></span></button>'
+  );
+  $(".main-nav").prepend($navMenuToggle);
+
+  $navMenuToggle.click(function (e) {
+    e.stopPropagation();
+    $(this).toggleClass("active");
+    $(".nav-menu").toggleClass("active");
+  });
+
+  // Close menu when clicking outside
+  $(document).click(function (e) {
+    if (!$(e.target).closest(".nav-menu, .nav-menu-toggle").length) {
+      $(".nav-menu").removeClass("active");
+      $(".nav-menu-toggle").removeClass("active");
+    }
+  });
+
+  // Handle submenu toggles on mobile
+  $(".supervisor-item").click(function (e) {
+    if (window.innerWidth <= 1024) {
+      e.preventDefault();
+      e.stopPropagation();
+      $(this).toggleClass("active");
+    }
+  });
+
+  // Update menu state on resize
+  $(window).resize(function () {
+    if (window.innerWidth > 1024) {
+      $(".nav-menu").removeClass("active");
+      $(".nav-menu-toggle").removeClass("active");
+      $(".supervisor-item").removeClass("active");
+    }
+  });
 });
